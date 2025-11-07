@@ -178,4 +178,4 @@ Integrate with CRM systems for automated customer retention campaigns
 
 P. Naveen Kumar
 Under the guidance of Vihara Tech Institute
-📧 [Add your email or LinkedIn link here]
+📧 [puppalanaveenkumar11@gmail.com]

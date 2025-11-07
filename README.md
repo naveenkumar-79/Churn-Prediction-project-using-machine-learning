@@ -162,7 +162,8 @@ Below are some insights derived during Exploratory Data Analysis (EDA):
 * 🔹 *Longer tenure* customers are more loyal.
 
 📊 *Sample Visualization:*
-![EDA Dashboard Placeholder](https://placehold.co/700x350?text=EDA+Visualization+Placeholder)
+<img width="988" height="537" alt="sample visualization" src="https://github.com/user-attachments/assets/25864eec-3bca-4bbc-a270-4f88d01ed60f" />
+
 
 ---
 
@@ -184,23 +185,12 @@ pip install -r requirements.txt
 # Run Flask app
 python app.py
 
-
-Then open: http://127.0.0.1:5000/
-
 ---
 
 ## 🧑‍💻 Author
 
 *👨‍🎓 P. Naveen Kumar*
-Under the guidance of *Vihara Tech Institute*
-📍 A dissertation submitted to The Skill Union
-💬 "From reactive to proactive retention strategies through data-driven intelligence."
-
----
-
-## 📜 License
-
-This project is licensed under the *MIT License* — feel free to use and modify with credit.
+Gmail:puppalanaveenkumar11@gmail.com
 
 ---
 
@@ -220,6 +210,4 @@ This project is licensed under the *MIT License* — feel free to use and modify
 * Integrate auto-retraining pipeline with new data
 * Deploy using Docker + CI/CD
 
----
 
-⭐ *If you like this project, give it a star on GitHub!*

@@ -107,7 +107,8 @@ H --> I[Model Deployment - Flask + Render]
 | AUC Score | 0.82  |
 
 🧭 *ROC Curve & AUC Visualization:*
-![ROC Curve Placeholder](https://placehold.co/600x300?text=ROC+Curve+Placeholder)
+!<img width="562" height="503" alt="Roc-Auc curve" src="https://github.com/user-attachments/assets/d648322c-dc3f-407c-80ab-e854fb3af31c" />
+
 
 ---
 

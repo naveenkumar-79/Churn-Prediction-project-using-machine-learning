@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Customer Churn Prediction Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      margin: 0;
+      padding: 0;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* NAVIGATION BAR */
+    nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      background: linear-gradient(90deg, #4facfe, #00f2fe);
+      padding: 5px 16px;
+      border-bottom-left-radius: 10px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+      z-index: 999;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-item button {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+      padding: 5px 6px;
+    }
+
+    .nav-item button:hover {
+      color: #2c2c54;
+    }
+
+    /* DROPDOWN STYLE */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 25px;
+      right: 0;
+      background: rgba(255, 255, 255, 0.97);
+      color: #333;
+      width: 380px;
+      padding: 12px;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      text-align: left;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-item:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content h3 {
+      color: #3b3b98;
+      font-size: 14px;
+      margin-top: 0;
+    }
+
+    .scroll-box {
+      max-height: 220px;
+      overflow-y: auto;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 5px;
+      background-color: #fafafa;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11.5px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 4px 6px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f1f5ff;
+      color: #3b3b98;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: #fafafa;
+    }
+
+    /* DASHBOARD */
+    .dashboard {
+      max-width: 780px;
+      margin: 80px auto 40px auto;
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 25px 35px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #3b3b98;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    p.subtitle {
+      text-align: center;
+      color: #555;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    .section {
+      background: #f9f9fb;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .section h2 {
+      color: #3b3b98;
+      border-left: 3px solid #4facfe;
+      padding-left: 8px;
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 15px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 9px 11px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 13px;
+      transition: 0.2s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: #4facfe;
+      outline: none;
+      box-shadow: 0 0 5px rgba(79, 172, 254, 0.5);
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+      color: #444;
+      font-size: 13px;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      background: linear-gradient(90deg, #4facfe, #00f2fe);
+      border: none;
+      color: #fff;
+      font-size: 15px;
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      font-weight: 600;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #00c3ff, #4facfe);
+      transform: scale(1.02);
+    }
+
+    .result {
+      text-align: center;
+      font-size: 16px;
+      margin-top: 20px;
+      font-weight: 600;
+      color: #2f3640;
+    }
+
+    /* SIM Provider */
+    .sim-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: space-evenly;
+    }
+
+    .sim-card {
+      background: #fff;
+      border: 2px solid #eee;
+      border-radius: 10px;
+      text-align: center;
+      width: 100px;
+      padding: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .sim-card img {
+      width: 55px;
+      height: 55px;
+      object-fit: contain;
+    }
+
+    .sim-card:hover {
+      transform: scale(1.05);
+      border-color: #4facfe;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    }
+
+    .sim-card.active {
+      border-color: #4facfe;
+      background: #e9f6ff;
+    }
+
+    footer {
+      text-align: center;
+      margin: 30px 0;
+      color: #333;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- RIGHT NAVIGATION -->
+  <nav>
+    <div class="nav-container">
+      <div class="nav-item">
+        <button>📘 About Project</button>
+        <div class="dropdown-content">
+          <h3>About Project</h3>
+          <p>
+            Customer churn prediction is a critical task for businesses seeking to retain customers and maintain long-term profitability.
+              Churn occurs when customers discontinue using a company’s products or services, which  significantly impact revenue and growth.
+              This project focuses on predicting customer churn using machine learning techniques to identify patterns and key factors that influence customer retention.
+              This project predicts telecom customer churn using machine learning
+            models by analyzing demographic, billing, and service data. It uses
+            Logistic Regression with SMOTE balancing and feature scaling to
+            provide accurate predictions of customer churn.
+          </p>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <button>🧩 About Inputs</button>
+        <div class="dropdown-content">
+          <h3>Dataset Input Description</h3>
+          <div class="scroll-box">
+            <table>
+              <tr><th>Column</th><th>Type</th><th>Description</th></tr>
+              <tr><td>gender</td><td>string</td><td>Customer gender</td></tr>
+              <tr><td>Senior Citizen</td><td>integer</td><td>0 = No, 1 = Yes</td></tr>
+              <tr><td>Partner</td><td>string</td><td>Has a partner</td></tr>
+              <tr><td>Dependents</td><td>string</td><td>Has dependents</td></tr>
+              <tr><td>tenure</td><td>integer</td><td>Months stayed with company</td></tr>
+              <tr><td>Phone Service</td><td>string</td><td>Has phone service</td></tr>
+              <tr><td>Multiple Lines</td><td>string</td><td>Multiple phone lines</td></tr>
+              <tr><td>Internet Service</td><td>string</td><td>DSL / Fiber / No</td></tr>
+              <tr><td>Online Security</td><td>string</td><td>Opted for security</td></tr>
+              <tr><td>Online Backup</td><td>string</td><td>Data backup subscription</td></tr>
+              <tr><td>Device Protection</td><td>string</td><td>Anti-virus add-ons</td></tr>
+              <tr><td>Tech Support</td><td>string</td><td>Tech support available</td></tr>
+              <tr><td>Streaming TV</td><td>string</td><td>TV streaming access</td></tr>
+              <tr><td>Streaming Movies</td><td>string</td><td>Movie streaming access</td></tr>
+              <tr><td>Contract</td><td>string</td><td>Contract type</td></tr>
+              <tr><td>Paperless Billing</td><td>string</td><td>Paperless option</td></tr>
+              <tr><td>Payment Method</td><td>string</td><td>Payment type</td></tr>
+              <tr><td>Monthly Charges</td><td>float</td><td>Monthly fee</td></tr>
+              <tr><td>Total Charges</td><td>float</td><td>Total billed</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <button>👨‍💻 About Author</button>
+        <div class="dropdown-content">
+          <h3>About Author</h3>
+          <p>
+            <b>Name:</b> P. Naveen Kumar<br />
+            <b>Email:</b> <a href="mailto:puppalanaveenkumar11@gmail.com">puppalanaveenkumar11@gmail.com</a><br />
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- DASHBOARD -->
+  <div class="dashboard">
+    <h1>Customer Churn Prediction</h1>
+    <p class="subtitle">Enter customer details to predict the likelihood</p>
+
+    <form action="/predict" method="post">
+
+      <!-- CUSTOMER DETAILS -->
+      <div class="section">
+        <h2>👤 Customer Details</h2>
+        <div class="grid">
+          <div><label>Gender</label><select name="gender" required><option value="">Select</option><option value="0">Female</option><option value="1">Male</option></select></div>
+          <div><label>Senior Citizen</label><select name="SeniorCitizen" required><option value="">Select</option><option value="0">No</option><option value="1">Yes</option></select></div>
+          <div><label>Partner</label><select name="Partner" required><option value="">Select</option><option value="No">No</option><option value="Yes">Yes</option></select></div>
+          <div><label>Dependents</label><select name="Dependents" required><option value="">Select</option><option value="No">No</option><option value="Yes">Yes</option></select></div>
+          <div><label>Tenure (months)</label><input type="number" step="any" name="tenure" placeholder="Enter tenure" required></div>
+        </div>
+      </div>
+
+      <!-- SERVICE DETAILS -->
+      <div class="section">
+        <h2>📱 Service Details</h2>
+        <div class="grid">
+          <div><label>Phone Service</label><select name="PhoneService" required><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
+          <div><label>Multiple Lines</label><select name="MultipleLines" required><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option><option value="No phone service">No phone service</option></select></div>
+          <div><label>Internet Service</label><select name="InternetService" required><option value="">Select</option><option value="DSL">DSL</option><option value="Fiber optic">Fiber optic</option><option value="No">No</option></select></div>
+          <div><label>Online Security</label><select name="OnlineSecurity" required><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option><option value="No internet service">No internet service</option></select></div>
+          <div><label>Online Backup</label><select name="OnlineBackup" required><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option><option value="No internet service">No internet service</option></select></div>
+          <div><label>Device Protection</label><select name="DeviceProtection" required><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option><option value="No internet service">No internet service</option></select></div>
+          <div><label>Tech Support</label><select name="TechSupport" required><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option><option value="No internet service">No internet service</option></select></div>
+          <div><label>Streaming TV</label><select name="StreamingTV" required><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option><option value="No internet service">No internet service</option></select></div>
+          <div><label>Streaming Movies</label><select name="StreamingMovies" required><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option><option value="No internet service">No internet service</option></select></div>
+          <div><label>Contract</label><select name="Contract" required><option value="">Select</option><option value="Month-to-month">Month-to-month</option><option value="One year">One year</option><option value="Two year">Two year</option></select></div>
+        </div>
+      </div>
+
+      <!-- SIM PROVIDER -->
+      <div class="section">
+        <h2>📶 SIM Provider</h2>
+        <input type="hidden" name="sim" id="simInput" required />
+        <div class="sim-options">
+          <div class="sim-card" data-value="Airtel"><img src="https://pluspng.com/img-png/airtel-logo-png-airtel-launches-special-90-day-offer-for-4g-customers-30-gb-at-rs-1495-650.png" alt="Airtel"/><p>Airtel</p></div>
+          <div class="sim-card" data-value="Jio"><img src="https://logos-world.net/wp-content/uploads/2020/11/Jio-Logo.png" alt="Jio"/><p>Jio</p></div>
+          <div class="sim-card" data-value="Vi"><img src="https://newsimg.giznext.com/mobile/production/news/wp-content/uploads/2022/05/18141521/block-vi-sim-online-1024x576.png" alt="Vi"/><p>Vi</p></div>
+          <div class="sim-card" data-value="BSNL"><img src="https://logodix.com/logo/2026363.jpg" alt="BSNL"/><p>BSNL</p></div>
+        </div>
+      </div>
+
+      <!-- BILLING DETAILS -->
+      <div class="section">
+        <h2>💳 Billing Details</h2>
+        <div class="grid">
+          <div><label>Paperless Billing</label><select name="PaperlessBilling" required><option value="">Select</option><option value="No">No</option><option value="Yes">Yes</option></select></div>
+          <div><label>Payment Method</label><select name="PaymentMethod" required><option value="">Select</option><option value="Electronic check">Electronic check</option><option value="Mailed check">Mailed check</option><option value="Bank transfer (automatic)">Bank transfer (automatic)</option><option value="Credit card (automatic)">Credit card (automatic)</option></select></div>
+          <div><label>Monthly Charges</label><input type="number" step="any" name="MonthlyCharges" placeholder="Enter monthly charges" required></div>
+          <div><label>Total Charges</label><input type="number" step="any" name="TotalCharges" placeholder="Enter total charges" required></div>
+        </div>
+      </div>
+
+      <button type="submit">🔍 Predict Customer Likelihood</button>
+    </form>
+
+    <div class="result">
+      {% if prediction_text %}
+      <p>{{ prediction_text }}</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <footer>© Customer Churn Prediction | Developed by P. Naveen Kumar</footer>
+
+  <script>
+    // SIM selection logic
+    const simCards = document.querySelectorAll('.sim-card');
+    const simInput = document.getElementById('simInput');
+    simCards.forEach(card => {
+      card.addEventListener('click', () => {
+        simCards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        simInput.value = card.dataset.value;
+      });
+    });
+  </script>
+</body>
+</html>

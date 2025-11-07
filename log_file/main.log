@@ -1,0 +1,133 @@
+2025-11-07 11:47:42,933 - INFO - customerID          0
+gender              0
+SeniorCitizen       0
+Partner             0
+Dependents          0
+tenure              0
+PhoneService        0
+MultipleLines       0
+InternetService     0
+OnlineSecurity      0
+OnlineBackup        0
+DeviceProtection    0
+TechSupport         0
+StreamingTV         0
+StreamingMovies     0
+Contract            0
+PaperlessBilling    0
+PaymentMethod       0
+MonthlyCharges      0
+TotalCharges        0
+JoinDate            0
+Churn               0
+Churn.1             0
+dtype: int64
+2025-11-07 11:47:42,993 - INFO - data shape (7043, 24)
+2025-11-07 11:47:43,003 - INFO -       gender  SeniorCitizen Partner Dependents  tenure PhoneService     MultipleLines  ...              PaymentMethod MonthlyCharges TotalCharges    JoinDate     sim Churn Churn.1
+0     Female              0     Yes         No       1           No  No phone service  ...           Electronic check          29.85        29.85  01-01-2015     Jio    No      No
+1       Male              0      No         No      34          Yes                No  ...               Mailed check          56.95       1889.5  01-10-2017  Airtel    No      No
+2       Male              0      No         No       2          Yes                No  ...               Mailed check          53.85       108.15  01-02-2015      Vi   Yes     Yes
+3       Male              0      No         No      45           No  No phone service  ...  Bank transfer (automatic)          42.30      1840.75  01-09-2018  Airtel    No      No
+4     Female              0      No         No       2          Yes                No  ...           Electronic check          70.70       151.65  01-02-2015  Airtel   Yes     Yes
+...      ...            ...     ...        ...     ...          ...               ...  ...                        ...            ...          ...         ...     ...   ...     ...
+7038    Male              0     Yes        Yes      24          Yes               Yes  ...               Mailed check          84.80       1990.5  01-12-2016      Vi    No      No
+7039  Female              0     Yes        Yes      72          Yes               Yes  ...    Credit card (automatic)         103.20       7362.9  01-12-2020      Vi    No      No
+7040  Female              0     Yes        Yes      11           No  No phone service  ...           Electronic check          29.60       346.45  01-11-2015      Vi    No      No
+7041    Male              1     Yes         No       4          Yes               Yes  ...               Mailed check          74.40        306.6  01-04-2015    BSNL   Yes     Yes
+7042    Male              0      No         No      66          Yes                No  ...  Bank transfer (automatic)         105.65       6844.5  01-06-2020     Jio    No      No
+
+[7043 rows x 23 columns]
+2025-11-07 11:47:43,082 - INFO - datatypes of each columngender               object
+SeniorCitizen         int64
+Partner              object
+Dependents           object
+tenure                int64
+PhoneService         object
+MultipleLines        object
+InternetService      object
+OnlineSecurity       object
+OnlineBackup         object
+DeviceProtection     object
+TechSupport          object
+StreamingTV          object
+StreamingMovies      object
+Contract             object
+PaperlessBilling     object
+PaymentMethod        object
+MonthlyCharges      float64
+TotalCharges        float64
+JoinDate             object
+sim                  object
+Churn                object
+Churn.1              object
+dtype: object
+2025-11-07 11:47:43,257 - INFO - dataset      gender  SeniorCitizen Partner Dependents  tenure PhoneService     MultipleLines  ... TotalCharges   JoinDate     sim Churn Churn.1 JoinYear  JoinMonth
+0     Female              0     Yes         No       1           No  No phone service  ...        29.85 2015-01-01     Jio    No      No     2015    January
+1       Male              0      No         No      34          Yes                No  ...      1889.50 2017-10-01  Airtel    No      No     2017    October
+2       Male              0      No         No       2          Yes                No  ...       108.15 2015-02-01      Vi   Yes     Yes     2015   February
+3       Male              0      No         No      45           No  No phone service  ...      1840.75 2018-09-01  Airtel    No      No     2018  September
+4     Female              0      No         No       2          Yes                No  ...       151.65 2015-02-01  Airtel   Yes     Yes     2015   February
+...      ...            ...     ...        ...     ...          ...               ...  ...          ...        ...     ...   ...     ...      ...        ...
+7038    Male              0     Yes        Yes      24          Yes               Yes  ...      1990.50 2016-12-01      Vi    No      No     2016   December
+7039  Female              0     Yes        Yes      72          Yes               Yes  ...      7362.90 2020-12-01      Vi    No      No     2020   December
+7040  Female              0     Yes        Yes      11           No  No phone service  ...       346.45 2015-11-01      Vi    No      No     2015   November
+7041    Male              1     Yes         No       4          Yes               Yes  ...       306.60 2015-04-01    BSNL   Yes     Yes     2015      April
+7042    Male              0      No         No      66          Yes                No  ...      6844.50 2020-06-01     Jio    No      No     2020       June
+
+[7043 rows x 25 columns]
+2025-11-07 11:47:50,396 - INFO - Numerical columns: Index(['MonthlyCharges', 'TotalCharges'], dtype='object')
+2025-11-07 11:47:50,396 - INFO - Categorical columns: Index(['gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure',
+       'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity',
+       'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV',
+       'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod',
+       'JoinDate', 'sim', 'Churn'],
+      dtype='object')
+2025-11-07 11:47:50,397 - INFO - missing values after data seperationMonthlyCharges    0
+TotalCharges      0
+dtype: int64
+2025-11-07 11:47:50,398 - INFO - missing values after data seperationMonthlyCharges    0
+TotalCharges      0
+dtype: int64
+2025-11-07 11:48:25,297 - INFO - (5634, 2)
+2025-11-07 11:48:25,297 - INFO - (1409, 2)
+2025-11-07 11:48:25,297 - INFO - (5634, 25)
+2025-11-07 11:48:25,297 - INFO - (1409, 25)
+2025-11-07 11:48:25,300 - INFO - Training_data shape : (5634, 27)
+2025-11-07 11:48:25,300 - INFO - Testing_data shape : (1409, 27)
+2025-11-07 11:48:25,301 - INFO - Total row for yes category in training data 5634 was :1496
+2025-11-07 11:48:25,302 - INFO - Total row for No category in training data 5634 was:4138
+2025-11-07 11:48:28,423 - INFO - Total row for Yes category in training data 8276 was :4138
+2025-11-07 11:48:28,424 - INFO - Total row for No category in training data 8276 was:4138
+2025-11-07 11:48:28,443 - INFO -    MonthlyCharges  TotalCharges tenure  Contract  ...  PaperlessBilling_Yes  PaymentMethod_Credit card (automatic)  PaymentMethod_Electronic check  PaymentMethod_Mailed check
+0       -0.147316     -0.043670   21.0       1.0  ...                   0.0                                    0.0                             0.0                         1.0
+1        0.995273      1.027297   54.0       2.0  ...                   1.0                                    0.0                             0.0                         0.0
+2       -0.963839     -2.018448    1.0       0.0  ...                   1.0                                    0.0                             1.0                         0.0
+3       -0.018820     -0.903868    4.0       0.0  ...                   1.0                                    0.0                             1.0                         0.0
+
+[4 rows x 27 columns]
+2025-11-07 11:48:28,471 - INFO - training data for the model:       Contract  sim  SeniorCitizen_1  Partner_Yes  Dependents_Yes  ...  PaymentMethod_Electronic check  PaymentMethod_Mailed check    tenure  MonthlyCharges  TotalCharges
+0     1.000000    3         0.000000     0.000000             1.0  ...                        0.000000                         1.0 -0.297225       -0.252190      0.065582
+1     2.000000    0         0.000000     0.000000             0.0  ...                        0.000000                         0.0  1.083533        0.964892      1.135830
+2     0.000000    2         0.000000     1.000000             0.0  ...                        1.000000                         0.0 -1.134048       -1.121950     -1.907872
+3     0.000000    0         0.000000     0.000000             0.0  ...                        1.000000                         0.0 -1.008524       -0.115317     -0.794040
+4     2.000000    3         0.000000     0.000000             1.0  ...                        0.000000                         0.0 -1.175889       -0.291497      0.418757
+...        ...  ...              ...          ...             ...  ...                             ...                         ...       ...             ...           ...
+8271  0.000000    0         1.000000     0.000000             0.0  ...                        0.625330                         0.0 -0.992848        0.625567     -0.540846
+8272  0.000000    0         0.252922     0.000000             0.0  ...                        0.747078                         0.0  0.340975        0.725101      0.675724
+8273  0.000000    2         0.000000     0.000000             0.0  ...                        1.000000                         0.0  0.255861        1.504155      0.725380
+8274  0.940057    0         0.000000     0.000000             0.0  ...                        0.940057                         0.0  0.709470       -1.254482     -0.143959
+8275  0.000000    0         0.869026     0.869026             0.0  ...                        1.000000                         0.0 -0.051658        0.102540      0.314255
+
+[8276 rows x 27 columns]
+2025-11-07 11:48:35,169 - INFO - Test Accuracy LR : 0.7544357700496807
+2025-11-07 11:48:35,172 - INFO - confusion matrix : [[755 281]
+ [ 65 308]]
+2025-11-07 11:48:35,179 - INFO - classification_report :               precision    recall  f1-score   support
+
+           0       0.92      0.73      0.81      1036
+           1       0.52      0.83      0.64       373
+
+    accuracy                           0.75      1409
+   macro avg       0.72      0.78      0.73      1409
+weighted avg       0.82      0.75      0.77      1409
+

@@ -1,0 +1,18 @@
+2025-11-07 11:48:25,272 - INFO - Final categorical columns:
+Index(['tenure', 'Contract', 'sim', 'gender_Male', 'SeniorCitizen_1',
+       'Partner_Yes', 'Dependents_Yes', 'PhoneService_Yes',
+       'MultipleLines_No phone service', 'MultipleLines_Yes',
+       'InternetService_Fiber optic', 'InternetService_No',
+       'OnlineSecurity_No internet service', 'OnlineSecurity_Yes',
+       'OnlineBackup_No internet service', 'OnlineBackup_Yes',
+       'DeviceProtection_No internet service', 'DeviceProtection_Yes',
+       'TechSupport_No internet service', 'TechSupport_Yes',
+       'StreamingTV_No internet service', 'StreamingTV_Yes',
+       'StreamingMovies_No internet service', 'StreamingMovies_Yes',
+       'PaperlessBilling_Yes', 'PaymentMethod_Credit card (automatic)',
+       'PaymentMethod_Electronic check', 'PaymentMethod_Mailed check'],
+      dtype='object')
+2025-11-07 11:48:25,297 - INFO - Removed features: 8    MultipleLines_No phone service
+3                       gender_Male
+7                  PhoneService_Yes
+Name: Feature, dtype: object

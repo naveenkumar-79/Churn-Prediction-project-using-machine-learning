@@ -177,5 +177,4 @@ Integrate with CRM systems for automated customer retention campaigns
 👨‍💻 Author
 
 P. Naveen Kumar
-Under the guidance of Vihara Tech Institute
 📧 [puppalanaveenkumar11@gmail.com]

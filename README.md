@@ -125,9 +125,7 @@ This model is deployed using *Flask* (backend) and *Render* (cloud platform).
 
    bash
    gunicorn app:app
-   
 
-🌐 *Live Demo:* [https://your-render-app-url.onrender.com](#) (replace with your link)
 
 ---
 
